@@ -3,10 +3,10 @@ import pygame
 
 
 def save(window):
-    f = open(os.path.join(os.getcwd(), "saved", "last.txt"), "r+")
+    f = open(os.path.join(os.getcwd(), "saved", "last.txt"), "r")
     number = int(f.readline())
-    print(number)
-    f.truncate(0)
+    f.close()
+    f = open(os.path.join(os.getcwd(), "saved", "last.txt"), "w")
     f.write(str(number+1))
     f.close()
 
