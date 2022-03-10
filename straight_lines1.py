@@ -6,6 +6,7 @@ from pygame import draw, transform
 from time import sleep
 from random import randint
 from math import sqrt
+from save_windows import save
 clock = pygame.time.Clock()
 pygame.init()
 
@@ -131,6 +132,9 @@ def paint(n):
                          color1[2] + step[2] * multiplayer)
                 particle.draw(win, color)
         pygame.display.update()
+
+    if counter == frame_rate * 30:
+        save(win)
 
 
 def main():
