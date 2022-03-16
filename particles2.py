@@ -11,8 +11,8 @@ from save_windows import save
 clock = pygame.time.Clock()
 pygame.init()
 
-win_side = 700
-win_width = 1250
+win_side = 1080
+win_width = 1920
 win_height = win_side
 size = (win_width, win_height)
 win = pygame.display.set_mode(size)
@@ -36,7 +36,7 @@ class Particle:
 
 
 def noise_gen():
-    noise = PerlinNoise(3.5, random.seed())
+    noise = PerlinNoise(4.5, random.seed())
     return noise
 
 
@@ -87,7 +87,7 @@ def paint(n):
         # win.fill((0, 0, 0))
         clock.tick(frame_rate)
         counter += 1
-        if counter == frame_rate * 30:
+        if counter == frame_rate * 50:
             end = True
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -127,7 +127,7 @@ def paint(n):
                 particle.draw(win, color)
         pygame.display.update()
 
-    if counter == frame_rate * 30:
+    if counter == frame_rate * 50:
         save(win)
 
 
