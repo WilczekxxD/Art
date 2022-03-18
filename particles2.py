@@ -11,8 +11,8 @@ from save_windows import save
 clock = pygame.time.Clock()
 pygame.init()
 
-win_side = 1080
-win_width = 1920
+win_side = 2160
+win_width = 3840
 win_height = win_side
 size = (win_width, win_height)
 win = pygame.display.set_mode(size)
@@ -36,7 +36,7 @@ class Particle:
 
 
 def noise_gen():
-    noise = PerlinNoise(4.5, random.seed())
+    noise = PerlinNoise(7, random.seed())
     return noise
 
 
@@ -49,7 +49,6 @@ def check_color(color1, color2):
     dify = color1[1] - color2[1]
     difz = color1[2] - color2[2]
     distance = sqrt(difx**2 + dify**2 + difz**2)
-    print(distance)
     if distance > 300:
         return True
     else:
@@ -77,6 +76,8 @@ def paint(n):
     color1 = colors[0]
     color2 = colors[1]
 
+    stop_limit = 1000
+
     step = (-(color1[0] - color2[0]) / (win_width + win_height - 1),
             -(color1[1] - color2[1]) / (win_width + win_height - 1),
             -(color1[2] - color2[2]) / (win_width + win_height - 1))
@@ -87,7 +88,7 @@ def paint(n):
         # win.fill((0, 0, 0))
         clock.tick(frame_rate)
         counter += 1
-        if counter == frame_rate * 50:
+        if counter == frame_rate * stop_limit:
             end = True
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -127,7 +128,7 @@ def paint(n):
                 particle.draw(win, color)
         pygame.display.update()
 
-    if counter == frame_rate * 50:
+    if counter == frame_rate * stop_limit:
         save(win)
 
 
